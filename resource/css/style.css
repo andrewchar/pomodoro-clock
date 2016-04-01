@@ -1,0 +1,131 @@
+/* ------------------------------------ */
+/* BASIC SETUP */
+/* ------------------------------------ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+   font-size: 20px;
+    color: #555;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+}
+
+h1 {
+    font-size: 200%;
+    word-spacing: 4px;
+    letter-spacing: 1px;
+
+}
+
+h2 {
+    font-size: 100%;
+    font-weight: 400;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+/* ------------------------------------ */
+/* REUSABLE COMPONENTS */
+/* ------------------------------------ */
+.row {
+    max-width: 1140px;
+    margin: 0 auto;
+    
+}
+
+/* HEADING */
+header {
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 50px;
+}
+
+/* TIME SETTINGS */
+.section-set-time {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 10px 0 0 20px;
+}
+
+
+
+.break-time {
+    font-size: 120%;
+}
+
+/* BUTTON */
+button {
+    cursor: pointer;
+    font-size: 110%;
+}
+
+.btn-ghost {
+/*    display: inline-block;*/
+    border: 0;
+    background-color: #fff;
+    margin: 0 5px;
+}
+
+.btn-full {
+    border: 1px solid #ff9300;
+    background-color: #ff9300;
+    width: 70px;
+    height: 45px;
+    margin: 8px 35px;
+    border-radius: 30%
+}
+
+
+/* ------------------------------------ */
+/* TIMER BODY */
+/* ------------------------------------ */
+.body-circle {
+    border: 10px solid #c7c7c7;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    margin: 50px auto 0 auto;
+    
+}
+
+.body-circle h1:first-child {
+    margin-top: 110px;
+}
+
+.body-circle h1 {
+    font-size: 300%;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

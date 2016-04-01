@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Pomodoro Clock</title>
+        <link rel="stylesheet" href="resource/css/style.css" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
+        <link href='http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css' rel='stylesheet' type='text/css'>
+        
+    </head>
+    <body>
+        <header>
+            <div class="row">
+                <h1>Free Code Camp Pomorodo Clock</h1>
+            </div>
+        </header>
+    
+        <section class="timer">
+            <div class="row">
+               <div class="body-circle">
+                   <h1>Session</h1>
+                   <h1 id="session-time" class="count-down-clock">25</h1>
+               </div>
+            </div>
+        </section>
+        
+        <section class="section-set-time">
+            <div class="set-break-time">
+                <h2>break time</h2>
+                <button id="break-subtract" class="btn-ghost"><i class="ion-chevron-down"></i></button>
+                <span class="break-time">5</span>
+                <button id="break-add" class="btn-ghost"><i class="ion-chevron-up"></i></button>
+            </div>
+            <button id="start-clock" class="btn-full">Start</button>
+            <div class="set-session-length">
+                <h2>session time</h2>
+                <button id="session-subtract" class="btn-ghost"><i class="ion-chevron-down"></i></button>
+                <span class="session-time">15</span>
+                <button id="session-add" class="btn-ghost"><i class="ion-chevron-up"></i></button>
+            </div>
+        </section>
+        
+        
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="resource/js/script.js"></script>
+    
+    </body>
+</html>
