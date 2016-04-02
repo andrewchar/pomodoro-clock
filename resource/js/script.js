@@ -1,62 +1,41 @@
 var breakTime = 5; //initial break time value
-var sessionTime = 25; //initial session time value
-var sessionTimeOnBtn = 25; //initial btn num to match session time
+var sessionTime = 2; //initial session time value
+var sessionTimeOnBtn = 2; //initial btn num to match session time
 var mInterv;
-var sInterv;
+
 var activeTime = false;
 
-/* Clock time */
-function startSession() {
-    activeTime = true;
+/* Session time countdown */
+function startSession(minutes) {
     var seconds = 60;
-    var mins = sessionTime;
+    var mins = minutes;
     function tick() {
         var counter = document.getElementById("session-time-on-clock");
-        var current_minutes = mins-1;
+        var current_minutes = mins-1
         seconds--;
-        counter.innerHTML =
-        current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-        if( seconds > 0 ) {
-             sInterv = setTimeout(tick, 1000);
+        console.log(seconds);
+        counter.innerHTML = current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+        if( seconds <= 0 ) {
+            mInterv = setTimeout(tick, 250);
         } else {
             if(mins > 1){
-                mInterv = setTimeout(function() {
-                    mins - 1; 
-                }, 1000);
-            }
+                startSession(mins-1);           
+            } 
         }
     }
     tick();
 }
 
-/* Break time */
-function startBreak() {
-    activeTime = true;
-    var seconds = 60;
-    var mins = sessionTime;
-    function tick() {
-        var counter = document.getElementById("session-time-on-clock");
-        var current_minutes = mins-1;
-        seconds--;
-        counter.innerHTML =
-        current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-        if( seconds > 0 ) {
-             sInterv = setTimeout(tick, 1000);
-        } else {
-            if(mins > 1){
-                mInterv = setTimeout(function() {
-                    mins - 1; 
-                }, 1000);
-            }
-        }
-    }
-    tick();
-}
+
+
+/* Break time countdown */
+
  
 /* stop clock */
 function myStopFunction() {
-    clearInterval(sInterv);
+    //clearInterval(sInterv);
     clearInterval(mInterv);
+    $('#session-time-on-clock').text(sessionTime);
 }
 
 $(document).ready(function() {
@@ -113,7 +92,7 @@ $(document).ready(function() {
             return;
         } else {
         activeTime = true;
-        startSession();
+        startSession(sessionTime);
         }
     })
     
