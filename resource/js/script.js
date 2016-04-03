@@ -1,40 +1,64 @@
 var breakTime = 5; //initial break time value
-var sessionTime = 2; //initial session time value
-var sessionTimeOnBtn = 2; //initial btn num to match session time
-var mInterv;
-
-var activeTime = false;
+var sessionTime = 25; //initial session time value
+var sessionTimeOnBtn = 25; //initial btn num to match session time
+var sessionInterv; //setTimeout value for session
+var breakInterv; //setTimeout value for break
+var flag = false;
 
 /* Session time countdown */
 function startSession(minutes) {
+    $('.session-break-toggle').text('Session');
     var seconds = 60;
     var mins = minutes;
-    function tick() {
+    function sessiontick() {
         var counter = document.getElementById("session-time-on-clock");
-        var current_minutes = mins-1
+        var current_minutes = mins-1;
         seconds--;
-        console.log(seconds);
         counter.innerHTML = current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-        if( seconds <= 0 ) {
-            mInterv = setTimeout(tick, 250);
+         if( seconds > 0 ) {
+            sessionInterv = setTimeout(sessiontick, 1000);
         } else {
             if(mins > 1){
-                startSession(mins-1);           
-            } 
+                setTimeout(function () { startSession(mins - 1); }, 1000);           
+            } else {
+                /* once clock reaches 00:00 call break time countdown to begin break time */
+                startBreak(breakTime);
+                clearInterval(sessionInterv);
+            }
         }
     }
-    tick();
-}
-
-
+    sessiontick();
+};
 
 /* Break time countdown */
-
+function startBreak(minutes) {
+    $('.session-break-toggle').text('Break!');
+    var seconds = 60;
+    var mins = minutes;
+    function breaktick() {
+        var counter = document.getElementById("session-time-on-clock");
+        var current_minutes = mins-1;
+        seconds--;
+        counter.innerHTML = current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+         if( seconds > 0 ) {
+            breakInterv = setTimeout(breaktick, 1000);
+        } else {
+            if(mins > 1){
+                setTimeout(function () { startBreak(mins - 1); }, 1000);           
+            } else {
+                /* once clock reaches 00:00 call session time countdown to begin session time */
+                startSession(sessionTime);
+                clearInterval(breakInterv);
+            }
+        }
+    }
+    breaktick();
+};
  
 /* stop clock */
 function myStopFunction() {
-    //clearInterval(sInterv);
-    clearInterval(mInterv);
+    clearInterval(sessionInterv);
+    clearInterval(breakInterv);
     $('#session-time-on-clock').text(sessionTime);
 }
 
@@ -42,7 +66,7 @@ $(document).ready(function() {
     
     /* Decrease break time */
     $("#break-subtract").click(function(){
-        if (breakTime < 2 || activeTime === true) {
+        if (breakTime < 2 || flag === true) {
             return;
         } else {
             breakTime--;
@@ -52,17 +76,17 @@ $(document).ready(function() {
     
     /* Increase break time */
     $("#break-add").click(function(){
-        if (activeTime === true) {
+        if (flag === true) {
             return;
         } else {
-        breakTime++;
-        $('.break-time').text(breakTime);
+            breakTime++;
+            $('.break-time').text(breakTime);
         }
     });
     
     /* Decrease session time */
     $("#session-subtract").click(function(){
-        if (sessionTime < 2 || activeTime === true) {
+        if (sessionTime < 2 || flag === true) {
             return;
         } else {
             sessionTime = sessionTimeOnBtn;
@@ -75,34 +99,43 @@ $(document).ready(function() {
     
     /* Increase session time */
     $("#session-add").click(function(){
-        if (activeTime === true) {
+        if (flag === true) {
             return;
         } else {
-        sessionTime = sessionTimeOnBtn;
-        sessionTime++;
-        sessionTimeOnBtn++;
-        $('.session-time-on-btn').text(sessionTime);
-        $('#session-time-on-clock').text(sessionTime);
+            sessionTime = sessionTimeOnBtn;
+            sessionTime++;
+            sessionTimeOnBtn++;
+            $('.session-time-on-btn').text(sessionTime);
+            $('#session-time-on-clock').text(sessionTime);
         }
     });
     
-    /* Start timer */
-    $('#start-clock').click(function(){
-        if (activeTime === true) {
-            return;
+    /* toggle start/stop button w/ start&stop session */
+    $('#start-clock').on('click', function(e){
+        e.preventDefault();
+        /* if stop-clock class active, clear all setTimeOut(). reset on-screen session time */
+        if ($(this).hasClass('stop-clock')) {
+            flag = false;
+            clearInterval(sessionInterv);
+            clearInterval(breakInterv);
+            $('#session-time-on-clock').text(sessionTime);
+            $(this).text('Start').removeClass('stop-clock');
         } else {
-        activeTime = true;
-        startSession(sessionTime);
+            flag = true;
+            startSession(sessionTime);
+            $(this).text('Stop').addClass('stop-clock');
         }
-    })
+    });
+  
     
-    /* Stop timer */
-    $('#stop-clock').click(function(){
-        activeTime = false;
-        myStopFunction();
-    })
     
-}); //doc rdy func
+    
+    
+    
+    
+});
+
+
     
     
 

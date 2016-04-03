@@ -68,13 +68,16 @@ button {
 }
 
 .btn-ghost {
-/*    display: inline-block;*/
     border: 0;
     background-color: #fff;
     margin: 0 5px;
 }
 
-.btn-full {
+.btn-ghost:active {
+    border: 1px solid transparent;
+}
+
+#start-clock {
     border: 1px solid #ff9300;
     background-color: #ff9300;
     width: 70px;
@@ -82,6 +85,12 @@ button {
     margin: 8px 35px;
     border-radius: 30%
 }
+
+
+
+
+
+
 
 
 /* ------------------------------------ */
