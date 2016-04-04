@@ -16,11 +16,13 @@ body {
     background-color: #34495e;
 }
 
+/* ------------------------------------ */
+/* REUSEABLE */
+/* ------------------------------------ */
 h1 {
     font-size: 200%;
     word-spacing: 4px;
     letter-spacing: 1px;
-
 }
 
 h2 {
@@ -31,11 +33,9 @@ h2 {
     margin-bottom: 5px;
 }
 
-
 .row {
     max-width: 1140px;
     margin: 0 auto;
-    
 }
 
 /* HEADING */
@@ -47,17 +47,17 @@ header {
 
 /* TIME SETTINGS */
 .section-set-time {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
     justify-content: center;
     text-align: center;
     text-transform: uppercase;
-    margin: 40px 0 0 20px;
-}
-
-
-
-.break-time {
-    font-size: 120%;
+    margin: 25px 0 0 19px;;
 }
 
 /* BUTTON */
@@ -73,20 +73,16 @@ button {
     color: #ecf0f1;
 }
 
-/*
-.btn-ghost:active {
-    border: 1px solid transparent;
-}
-*/
-
 #start-clock {
     border: 1px solid #e67e22;
     background-color: #e67e22;
     width: 70px;
     height: 45px;
-    margin: 8px 35px;
+    margin: 8px 25px;
     border-radius: 30%
 }
+
+*:focus {outline: none;}
 
 /* ------------------------------------ */
 /* TIMER BODY */
@@ -97,17 +93,43 @@ button {
     height: 350px;
     border-radius: 50%;
     margin: 50px auto 0 auto;
-    
 }
 
-.body-circle h1:first-child {
-    margin-top: 90px;
-}
+.body-circle h1:first-child { margin-top: 90px; }
 
 .body-circle h1 {
     font-size: 300%;
     text-align: center;
 }
 
+/* ------------------------------------ */
+/* FOOTER */
+/* ------------------------------------ */
+footer { font-size: 150%; }
 
+.footer-nav{
+    position: fixed;
+    left: 25px;
+    bottom: 25px;
+}
 
+.social-links li {
+    list-style-type: none;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.social-links li i { color: #e67e22; }
+
+.ion-social-github,
+.ion-social-twitter,
+.ion-social-twitter,
+.ion-ios-flame,
+.ion-social-codepen,
+.ion-social-linkedin { -webkit-transition: color 0.4s; transition: color 0.4s; }
+
+.ion-social-github:hover { color: #000000; }
+.ion-social-twitter:hover { color: #55acee }
+.ion-ios-flame:hover { color: darkgreen; }
+.ion-social-codepen:hover { color: #fff; }
+.ion-social-linkedin:hover { color: #007bb5; }

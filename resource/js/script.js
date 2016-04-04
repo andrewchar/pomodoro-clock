@@ -1,11 +1,9 @@
-var breakTime = 1; //initial break time value
-var sessionTime = 1; //initial session time value
-var sessionTimeOnBtn = 1; //initial btn num to match session time
+var breakTime = 5; //initial break time value
+var sessionTime = 25; //initial session time value
+var sessionTimeOnBtn = 25; //initial btn num to match session time
 var sessionInterv; //setTimeout value for session
 var breakInterv; //setTimeout value for break
 var flag = false;
-
-
 
 /* Session time countdown */
 function startSession(minutes) {
@@ -19,10 +17,10 @@ function startSession(minutes) {
         seconds--;
         counter.innerHTML = current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
         if( seconds > 0 ) {
-            sessionInterv = setTimeout(sessiontick, 100);
+            sessionInterv = setTimeout(sessiontick, 1000);
         } else {
             if(mins > 1){
-                setTimeout(function () { startSession(mins - 1); }, 100);           
+                setTimeout(function () { startSession(mins - 1); }, 1000);           
             } else {
                 /* once clock reaches 00:00 call break time countdown to begin break time */
                 startBreak(breakTime);
@@ -36,8 +34,6 @@ function startSession(minutes) {
 /* Break time countdown */
 function startBreak(minutes) {
     $('.body-circle').css('background', '#d35400');
-    
-    
     $('.session-break-toggle').text('Break!');
     var seconds = 60;
     var mins = minutes;
@@ -48,10 +44,10 @@ function startBreak(minutes) {
         seconds--;
         counter.innerHTML = current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
          if( seconds > 0 ) {
-            breakInterv = setTimeout(breaktick, 100);
+            breakInterv = setTimeout(breaktick, 1000);
         } else {
             if(mins > 1){
-                setTimeout(function () { startBreak(mins - 1); }, 100);           
+                setTimeout(function () { startBreak(mins - 1); }, 1000);           
             } else {
                 /* once clock reaches 00:00 call session time countdown to begin session time */
                 startSession(sessionTime);
@@ -62,11 +58,6 @@ function startBreak(minutes) {
     breaktick();
 };
 
-
- 
-
-
- 
 $(document).ready(function() {
     
     /* Decrease break time */
@@ -134,22 +125,4 @@ $(document).ready(function() {
         }
     });
     
-   
-    
-        
-        
-    
-  
-    
-    
-    
-    
-    
-    
 });
-
-
-    
-    
-
-
